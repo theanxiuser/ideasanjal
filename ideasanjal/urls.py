@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+import home
 from ideasanjal import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # https://docs.djangoproject.com/en/4.0/topics/auth/default/#using-the-views
+    path("accounts/", include("django.contrib.auth.urls")),
+
+    path("", include("home.urls")),
 ]
 
 # https://stackoverflow.com/questions/42856793/django-is-not-displaying-the-image-via-media
