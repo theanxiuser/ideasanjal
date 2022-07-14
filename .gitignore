@@ -2,3 +2,8 @@
 venv/
 
 .idea/
+
+ideasanjal/__pycache__/
+
+#database
+ideasanjal_db.sqlite3
