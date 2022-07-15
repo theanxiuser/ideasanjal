@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Home</h1>
+{% extends "home/index.html" %}
 
-    {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}!</p>
-        <p><a href="{% url 'logout' %}">Logout</a></p>
+{% block title %}
+    - Social network for business activities
+{% endblock %}
 
-    {% else %}
-      <div>
-      <a href="{% url 'login' %}">Login</a>
+<style>
 
-      <a href="{% url 'register' %}">Register</a>
+
+</style>
+
+{% block content %}
+
+    <div class="container">
+        <div class="side-content">
+            <h1 class="brand-name">ideasanjal</h1>
+            <p class="brand-title center text-uppercase">Social Network For Business Activities</p>
+            <div class="login-urls">
+                 <a class="btn btn-success" href="{% url 'home:login' %}">LOG IN</a>
+                <a class="btn btn-outline-info" href="{% url 'home:register' %}">SIGN UP</a>
+            </div>
+        </div>
+        <div>
+            <img src="/static/img/growth.png" class="side-image" alt="business growth">
+        </div>
     </div>
-    {% endif %}
 
-    {% block content %}
-    {% endblock %}
-</body>
-</html>
+{% endblock %}
