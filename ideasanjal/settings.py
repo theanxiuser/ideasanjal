@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "home.apps.HomeConfig",
+
+    # https://pypi.org/project/django-widget-tweaks/
+    "widget_tweaks",    # for bootstrap
 ]
 
 MIDDLEWARE = [

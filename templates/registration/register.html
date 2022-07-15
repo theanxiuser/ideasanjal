@@ -1,9 +1,67 @@
-<h3>Register here</h3>
-<hr>
+{% extends "home/index.html" %}
+{% load widget_tweaks %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
+{% block title %}
+    | Register
+{% endblock %}
 
-    <button type="submit">Register</button>
-</form>
+{% block content %}
+
+<div class="login-form-wrapper">
+    {% if form.errors %}
+<!--    https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message-->
+            <div class="alert alert-info">
+                {% for key, value in form.errors.items %}
+                    {{value}}
+                {% endfor %}
+            </div>
+    {% endif %}
+
+        <form class="row g-3" action="{% url 'home:register' %}" method="post">
+            {% csrf_token %}
+
+            <p class="fs-3 text-uppercase">sign up</p>
+
+            <div class="col-md-6">
+                <!-- First name -->
+                {% render_field form.first_name class="form-control" placeholder="First Name" %}
+            </div>
+
+            <div class="col-md-6">
+              <!-- Last name -->
+              {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+            </div>
+
+            <div class="col-12">
+              <!-- E-mail -->
+            {% render_field form.email class="form-control" placeholder="Email" %}
+            </div>
+
+            <div class="col-md-6">
+                <!-- Username -->
+                {% render_field form.username class="form-control" placeholder="Username" %}
+            </div>
+
+            <div class="col-md-6">
+              <!-- Age -->
+              {% render_field form.password1 class="form-control" placeholder="Password" %}
+            </div>
+
+            <div class="col-12">
+              <!-- Password -->
+            {% render_field form.password2 class="form-control" type="password" placeholder="Conform Your Password" %}
+            </div>
+        
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">SIGN UP</button>
+            </div>
+
+        </form>
+
+          <hr>
+  
+        <!-- Terms of service -->
+        <p class="center">By clicking <strong>SIGN UP</strong> you agree to our Terms of Service.</p>
+</div>
+
+{% endblock %}
