@@ -8,7 +8,7 @@
 {% block content %}
 
 <div class="login-form-wrapper">
-  <form class="row g-3" action="{% url 'login' %}" method="post">
+  <form class="row g-3" action="{% url 'home:login' %}" method="post">
     {% csrf_token %}
 
     <p class="fs-3 text-uppercase">sign in</p>
@@ -26,14 +26,21 @@
           {% for error in field.errors %}
             <div class="invalid-feedback">{{error}}</div>
           {% endfor %}
-
-        {% else %}
-          {% render_field field class="form-control text-center" %}
-<!--        {{ field.label_tag }} {{ field }}-->
         {% endif %}
       </div>
+    {% endfor %}
+    <div class="col-12">
+    <!-- username input -->
+      {% render_field form.username class="form-control" placeholder="username" %}
+    </div>
 
-      {% endfor %}
+    <div class="col-12">
+    <!-- password input -->
+      {% render_field form.password class="form-control" placeholder="password" %}
+    </div>
+
+
+
 
       <!-- Login button -->
       <div class="d-grid gap-2">
