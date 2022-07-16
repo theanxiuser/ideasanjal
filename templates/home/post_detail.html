@@ -1,0 +1,21 @@
+{% extends "home/index.html" %}
+
+{% block content %}
+<div style="width: 80%; margin: auto;" >
+<h1>{{ post.title }}</h1><br><hr>
+
+<p>{{ post.author }}</p>
+
+<p><small >{{ post.updated_at }}</small></p>
+
+
+{{ post.content | safe }}<br>
+
+{% if post.image %}
+<img style="width: 500px" src="{{ post.image.url }}">
+
+
+{% endif %}
+</div>
+
+{% endblock %}
