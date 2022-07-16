@@ -1,13 +1,51 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-# Create your views here.
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import DetailView, UpdateView
+
 from home.forms import UserRegistrationForm, UserAuthenticationForm
+from home.models import IsUser, Post
+
+
+class PostDetailView(LoginRequiredMixin, DetailView):
+    """Detail of post"""
+    model = Post
+    template_name = "home/post_detail.html"
+
+
+class EditProfileView(LoginRequiredMixin, UpdateView):
+    """Edit own profile"""
+
+    # form = EditProfileForm
+    model = IsUser
+    fields = ["first_name", "last_name", "email", "age", "gender", "profession", "bio", "skills", "linkedin", "twitter",
+              "facebook", "github"]
+    template_name = "home/edit_profile.html"
+    success_url = reverse_lazy("home:profile")
+
+    def get_object(self):
+        return get_object_or_404(IsUser, pk=self.request.user.id)
+
+
+class ProfileView(DetailView):
+    """Profile view is used to display own profile"""
+
+    template_name = "home/profile.html"
+    context_object_name = "user"
+
+    def get_object(self):
+        return get_object_or_404(IsUser, id=self.request.user.id)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context["self_profile"] = True
+        return context
 
 
 def logout_view(request):
@@ -65,4 +103,10 @@ class HomeView(View):
     """
 
     def get(self, request):
-        return render(request, "home/control.html")
+        if request.user.is_authenticated:
+            queryset = Post.objects.filter(status=1).order_by('-created_at')
+            ctx = {"post_list": queryset}
+            return render(request, "home/feed.html", ctx)
+
+        return render(request, "home/home.html")
+
