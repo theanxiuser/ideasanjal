@@ -1,0 +1,108 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block additional_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css'%}">
+    {% endblock %}
+
+
+{% block content %}
+
+<!-- Template for display profile -->
+
+    <div class="container emp-profile">
+            <form>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img  src="{{ user.image }}" alt="{{ user.username }}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h3>
+                                        {{user.first_name}} {{user.last_name}}
+                                    </h3>
+                                    <h6>
+                                        {{user.profession | default:"No profession added."}}
+                                    </h6>
+                                      <p class="proile-rating">RANKINGS : <span>Not Ranked</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        {% if self_profile %}
+                            <a href="{% url 'home:edit_profile' %}" class="profile-edit-btn btn btn-outline-info" >Edit Profile</a>
+{#                        {% else %}#}
+{#                            <a href="{% url 'send-message' id_number=user.id %}" class="profile-edit-btn btn btn-secondary">Send Message</a>#}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>Links:</p>
+                            <a href="{{user.linkedin |default:"#"}}"><span class="fab fa-linkedin-in"></span> LinkedIn</a><br/>
+                            <a href="{{user.twitter |default:"#"}}"><span class="fab fa-twitter"></span> Twitter</a><br/>
+                            <a href="{{user.facebook |default:"#"}}"><span class="fab fa-facebook"></span> Facebook</a><br/>
+                            <a href="{{user.github |default:"#"}}"><span class="fab fa-github"></span> Github</a><br/>
+                            <p>SKILLS:</p>
+                                {{user.skills}}
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.username}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.first_name}} {{user.last_name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.email|default:"Email not added."}}</p>
+                                            </div>
+                                        </div>
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Age</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.age|default:"Age not added."}}</p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.gender|default:"Gender not added."}}</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="bio">
+                                {{user.bio|default:"No bio added."}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+{% endblock %}

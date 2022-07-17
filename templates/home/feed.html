@@ -1,9 +1,26 @@
 {% extends "home/index.html" %}
 
+
 {% block title %}
      | Home
 {% endblock %}
 
 {% block content %}
-<h1>Feed</h1>
+
+    <p class="center" style="font-size: x-large">Hello, {{ user }}</p>
+
+{% for post in post_list %}
+    <div class="card border-info mb-3 text-bg-light" style="width: 40rem; margin:auto">
+        <div class="card-body">
+            <h5 class="card-title card-header bg-transparent border-success"><a href="{% url 'home:post_detail' post.slug  %}">{{ post.title }}</a></h5>
+                <p class="card-text">{{ post.content | slice:":200" | safe}}...</p>
+                <p class="card-text"><small class="text-muted">{{ post.updated_at }}</small></p>
+                <p class="card-text"><small >{{ post.author }}</small></p>
+        </div>
+        {% if post.image %}
+            <a href="{% url 'home:post_detail' post.slug  %}"><img src="{{ post.image.url }}" class="card-img-bottom card-image" alt="{{ post.slug }}"></a>
+        {% endif %}
+    </div><br><br><hr>
+{% endfor %}
+
 {% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # https://pypi.org/project/django-widget-tweaks/
     "widget_tweaks",    # for bootstrap
+    "ckeditor",     # for rich text field
 ]
 
 MIDDLEWARE = [
@@ -133,9 +134,3 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-# redirect to back login page after logout
-LOGOUT_REDIRECT_URL = "login"
-
-# redirect to home page after login
-LOGIN_REDIRECT_URL = "home:home"
