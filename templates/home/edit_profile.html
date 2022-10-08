@@ -1,20 +1,84 @@
 {% extends 'home/index.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 
 {% block content %}
 
 <!-- Write template for editing profile -->
+<div class="edit-profile-wrapper">
+<form class="row g-3" action="" method="post">
+            {% csrf_token %}
 
-<h1>Edit {{user.username}}'s profile page</h1>
+            <p class="fs-3 text-uppercase">Edit {{user.username}}'s profile page</p>
 
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit">
-    <input type="submit" onclick="window.location='{% url 'home:profile' %}' ; return false;" value="Cancel">
-  </form>
+            <div class="col-md-6">
+                <!-- First name -->
+                <label>First Name: </label>
+                {{ form.first_name }}
+            </div>
+
+            <div class="col-md-6">
+              <!-- Last name -->
+                <label>Last Name: </label>
+              {{ form.last_name }}
+            </div>
+
+            <div class="col-12">
+              <!-- E-mail -->
+                <label>Email: </label>
+            {{ form.email }}
+            </div>
+
+            <div class="col-md-6">
+                <!-- Gender -->
+                <label>Gender: </label>
+                {{ form.gender }}
+            </div>
+
+            <div class="col-md-6">
+              <!-- Age -->
+                <label>Age: </label>
+              {{ form.age }}
+            </div>
+
+            <div class="col-12">
+              <!-- profession -->
+                <label>Profession: </label>
+           {{ form.profession }}
+            </div>
+
+            <div class="col-12">
+                <label>Bio: </label>
+           {{ form.bio }}
+            </div>
+
+            <div class="col-12">
+                <label>Skills: </label>
+           {{ form.skills }}
+            </div>
+
+            <div class="col-md-6">
+                <label>Linkedin: </label>
+                {{ form.linkedin }}
+            </div>
+            <div class="col-md-6">
+                <label>Twitter: </label>
+                {{ form.twitter }}
+            </div>
+            <div class="col-md-6">
+                <label>Facebook: </label>
+                {{ form.facebook }}
+            </div>
+            <div class="col-md-6">
+                <label>Github: </label>
+                {{ form.github }}
+            </div>
+
+            <input class="btn btn-success" type="submit" value="Submit">
+            <input class="btn btn-danger" type="submit" onclick="window.location='{% url 'home:profile' %}' ; return false;" value="Cancel">
+
+        </form>
+</div>
 
 {% endblock %}
