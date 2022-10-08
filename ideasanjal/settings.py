@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # https://pypi.org/project/django-widget-tweaks/
     "widget_tweaks",    # for bootstrap
     "ckeditor",     # for rich text field
+    "django_extensions",    # python manage.py runscript file
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
