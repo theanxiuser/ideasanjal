@@ -10,7 +10,7 @@
     <p class="center" style="font-size: x-large">Hello, {{ user }}</p>
 
 {% for post in post_list %}
-    <div class="card border-info mb-3 text-bg-light" style="width: 40rem; margin:auto">
+    <div class="card border-info mb-3 text-bg-light" style="width: 40rem; margin:auto; color:black">
         <div class="card-body">
             <h5 class="card-title card-header bg-transparent border-success"><a href="{% url 'home:post_detail' post.slug  %}">{{ post.title }}</a></h5>
                 <p class="card-text">{{ post.content | slice:":200" | safe}}...</p>
