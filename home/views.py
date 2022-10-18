@@ -24,7 +24,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
     # form = EditProfileForm
     model = IsUser
-    fields = ["first_name", "last_name", "email", "age", "gender", "profession", "bio", "skills", "linkedin", "twitter",
+    fields = ["image", "first_name", "last_name", "email", "age", "gender", "profession", "bio", "skills", "linkedin", "twitter",
               "facebook", "github"]
     template_name = "home/edit_profile.html"
     success_url = reverse_lazy("home:profile")
