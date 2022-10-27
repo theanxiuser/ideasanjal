@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.template.defaulttags import url
+from django.urls import path, include, re_path
 
 import home
 from ideasanjal import settings
@@ -23,6 +24,8 @@ from ideasanjal import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("home.urls")),
+    # url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 # https://stackoverflow.com/questions/42856793/django-is-not-displaying-the-image-via-media
