@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # Create your models here.
@@ -43,7 +45,7 @@ class Post(models.Model):
     """ Post model for creating post by admin to show in home"""
     title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
-    content = models.TextField()
+    content = RichTextUploadingField()
     status = models.IntegerField(choices=STATUS, default=0)
     author = models.ForeignKey(IsUser, on_delete=models.CASCADE)
     image = models.ImageField(default="", upload_to="post_img/", null=True, blank=True)

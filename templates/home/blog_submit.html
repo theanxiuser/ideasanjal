@@ -1,0 +1,12 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ blog.media }}
+    {{ blog.as_p }}
+    <input type="submit" value="SUBMIT">
+</form>
+
+{% endblock %}

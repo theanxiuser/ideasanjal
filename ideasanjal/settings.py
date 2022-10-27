@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "widget_tweaks",    # for bootstrap
     "ckeditor",     # for rich text field
     "django_extensions",    # python manage.py runscript file
+    "ckeditor_uploader",
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,20 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+####################################
+    ##  CKEDITOR CONFIGURATION ##
+####################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'post_img/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+###################################
