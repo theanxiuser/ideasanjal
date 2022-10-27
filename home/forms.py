@@ -2,7 +2,18 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from home.models import IsUser
+from home.models import IsUser, Post
+from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
+
+class BlogSubmitForm(forms.ModelForm):
+    """Form for post creation bt the users"""
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Post
+        fields = ["title", "slug", "content", "image"]
 
 
 class UserAuthenticationForm(forms.Form):
