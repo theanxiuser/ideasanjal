@@ -16,4 +16,6 @@ urlpatterns = [
     path("i/edit/", views.EditProfileView.as_view(), name="edit_profile"),
 
     path("<str:slug>/", PostDetailView.as_view(), name="post_detail"),
+
+    path("i/blog", views.blog_submit, name="blog_submit"),
 ]
