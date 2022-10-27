@@ -9,8 +9,29 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, UpdateView
 
-from home.forms import UserRegistrationForm, UserAuthenticationForm
+from home.forms import UserRegistrationForm, UserAuthenticationForm, BlogSubmitForm
 from home.models import IsUser, Post
+
+
+def blog_submit(request):
+    """View for posting blog to the admin"""
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = BlogSubmitForm(request.POST, request.FILES)
+
+            if form.is_valid():
+                obj = form.save(commit=False)
+                obj.author = IsUser.objects.get(pk=request.user.id)
+                obj.save()
+                messages.success(request, "Blog post is submitted. Wait for admin approval.")
+                return redirect("home:home")
+
+        else:
+            form = BlogSubmitForm()
+        context = {"blog": form}
+        return render(request, "home/blog_submit.html", context)
+    else:
+        return redirect("home:login")
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
