@@ -16,9 +16,10 @@
     border-bottom: 1px solid blue;
 }
 body{
-    background-image: url("/static/img/business-idea.jpg");
+    /*background-image: url("/static/img/business-idea.jpg");*/
+    background-color: #00071c;
     font-family: Roboto, sans-serif;
-    color: white;
+    color: #c4c2c2;
 }
 
 .btn{
@@ -47,7 +48,7 @@ body{
 }
 .brand-name:hover{
     color: palegoldenrod;
-    font-family: Helvetica, Monospace;
+    /*font-family: Helvetica, Monospace;*/
 }
 .brand-title{
     color:gold;
